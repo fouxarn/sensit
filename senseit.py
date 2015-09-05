@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask.ext.sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -9,7 +9,7 @@ from models import *
 
 @app.route("/")
 def index():
-    return "upp hund"
+    return render_template('index.html')
 
 @app.route("/sensors")
 def sensor():
@@ -18,7 +18,7 @@ def sensor():
 
 @app.route("/stats")
 def stats():
-    return "upp hund"
+    return render_template('stats.html')
 
 if __name__ == "__main__":
     app.run()
