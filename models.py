@@ -1,38 +1,40 @@
 from senseit import db
 
+plate_trigger = db.Table('plate_trigger',
+    db.Column('plate_id', db.Integer, db.ForeignKey('plate.id')),
+    db.Column('function_id', db.Integer, db.ForeignKey('function.id'))
+)
+
+solution_trigger = db.Table('solution_trigger',
+    db.Column('solution_id', db.Integer, db.ForeignKey('solution.id')),
+    db.Column('function_id', db.Integer, db.ForeignKey('function.id'))
+)
+
 class Plate(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), unique=True)
     weight = db.Column(db.Float)
+    functions = db.relationship('Function', secondary=plate_trigger,
+        backref=db.backref('plates', lazy='dynamic'))
 
     def __init__(self, name):
         self.name = name
         self.weight = 0
 
-class Plate_Trigger(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    plate_id = db.Column(db.Integer, db.ForeignKey('plate.id'))
-    function_id = db.Column(db.Integer, db.ForeignKey('function.id'))
-
-    def __init__(self, plate_id, function_id):
-        self.plate_id = plate_id
-        self.function_id = function_id
+    def __repr__(self):
+        return '{} {} {}'.format(self.id, self.name, self.weight)
 
 class Function(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     regex = db.Column(db.String(80))
+    solutions = db.relationship('Solution', secondary=solution_trigger,
+        backref=db.backref('functions', lazy='dynamic'))
 
     def __init__(self, regex):
         self.regex = regex
 
-class Solution_Trigger(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    solution_id = db.Column(db.Integer, db.ForeignKey('solution.id'))
-    function_id = db.Column(db.Integer, db.ForeignKey('function.id'))
-
-    def __init__(self, solution_id, function_id):
-        self.solution_id = solution_id
-        self.function_id = function_id
+    def __repr__(self):
+        return '{} {}'.format(self.id, self.regex)
 
 class Solution(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -40,3 +42,6 @@ class Solution(db.Model):
 
     def __init__(self, name):
         self.name = name
+
+    def __repr__(self):
+        return '{} {}'.format(self.id, self.name)
