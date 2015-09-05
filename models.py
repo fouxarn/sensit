@@ -30,12 +30,14 @@ class Function(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True)
     regex = db.Column(db.String(80))
+    image = db.Column(db.String(30))
     solutions = db.relationship('Solution', secondary=solution_trigger,
         backref=db.backref('functions', lazy='dynamic'))
 
-    def __init__(self, name, regex):
+    def __init__(self, name, regex, image):
         self.name = name
         self.regex = regex
+        self.image = image
 
     def __repr__(self):
         return '{} {} {}'.format(self.id, self.name, self.regex)
@@ -43,9 +45,11 @@ class Function(db.Model):
 class Solution(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), unique=True)
+    image = db.Column(db.String(30))
 
-    def __init__(self, name):
+    def __init__(self, name, image):
         self.name = name
+        self.image = image
 
     def __repr__(self):
         return '{} {}'.format(self.id, self.name)

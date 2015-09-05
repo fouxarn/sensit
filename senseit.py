@@ -13,8 +13,8 @@ def index():
         p = Plate.query.get(request.form['plate_id'])
         f = Function(request.form['function'])
         p.functions.append(f)
-    plates = Plate.query.all()
-    return render_template('index.html', plates=plates)
+    functions = Function.query.all()
+    return render_template('index.html', functions=functions)
 
 @app.route("/sensors")
 def sensor():
