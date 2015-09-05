@@ -1,7 +1,47 @@
 {% extends "base.html" %}
 {% block content %}
+    <br />
 
-<p>Events</p>
 
+    <div class="row event">
+
+        <div class="col s12">
+            <div class="card-panel blue lighten-4">
+
+                <div>If</div>
+
+                <select class="event-select">
+                    <option value="0" data-imagesrc="static/images/car.png" data-description="Car leaves"> </option>
+                    <option value="1" data-imagesrc="static/images/bed.png" data-description="Going to bed"></option>
+                    <option value="2" selected="selected" data-imagesrc="static/images/milk.png" data-description="Milk empty"></option>
+                </select>
+
+                <div>then</div>
+
+                <select class="event-select2">
+                    <option value="0" data-imagesrc="static/images/weather.png" data-description="Send weather report"></option>
+                    <option value="1" selected="selected" data-imagesrc="static/images/parking.png" data-description="Send parking "></option>
+                </select>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+        $('.event-select').ddslick({
+            onSelected: function(selectedData){
+                //callback function: do something with selectedData;
+            }
+        });
+
+        $('.event-select2').ddslick({
+            onSelected: function(selectedData){
+                //callback function: do something with selectedData;
+            }
+        });
+
+    </script>
 
 {% endblock %}
