@@ -1,6 +1,7 @@
 import json, requests, pprint
+
 key = '66fc20e245084815af770af82d2ceef6'
-pp = pprint.PrettyPrinter(indent=4)
+#pp = pprint.PrettyPrinter(indent=4)
 
 
 def getPakeringLkpgdata(timeString):
@@ -13,12 +14,11 @@ def getPakeringLkpgdata(timeString):
 	dataResult =data['ParkingAreaNewList']
 	returnData = []
 	for fields in dataResult:
-		
-
 		if(fields['Latitude']<58.4119 and fields['Latitude']>58.4087 and fields['Longitude']<15.6249 and fields['Longitude']>15.6089):
 			returnData.append(fields)
+
 	return returnData
-	
 
 
-pp.pprint(getPakeringLkpgdata("timeString"))
+
+#pp.pprint(getPakeringLkpgdata("timeString"))
