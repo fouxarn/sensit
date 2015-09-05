@@ -10,9 +10,9 @@ from models import *
 @app.route("/", methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        p = Plate.query.get(request.form['plate_id'])
-        f = Function(request.form['function'])
-        p.functions.append(f)
+        f = Function.query.get(request.form['function_id'])
+        s = Function.query.get(request.form['solution_id'])
+        f.solutions.append(s)
     functions = Function.query.all()
     return render_template('index.html', functions=functions)
 

@@ -2,7 +2,7 @@
 {% block content %}
     <br />
 
-
+    <form action="{{ url_for('index') }}" method=post>
     <div class="row event">
 
         <div class="col s12">
@@ -10,7 +10,8 @@
 
                 <div>If</div>
 
-                <select class="event-select" name="hej">
+
+                <select id="event-select" name="function_id">
                     <option value="0" data-imagesrc="static/images/car.png" data-description="Car leaves"> </option>
                     <option value="1" data-imagesrc="static/images/bed.png" data-description="Going to bed"></option>
                     <option value="2" selected="selected" data-imagesrc="static/images/milk.png" data-description="Milk empty"></option>
@@ -18,7 +19,7 @@
 
                 <div>then</div>
 
-                <select class="event-select2">
+                <select id="event-select2" name="solution_id">
                     <option value="0" data-imagesrc="static/images/weather.png" data-description="Send weather report"></option>
                     <option value="1" selected="selected" data-imagesrc="static/images/parking.png" data-description="Suggest parking"></option>
                 </select>
@@ -26,6 +27,8 @@
             </div>
         </div>
     </div>
+    <input type=submit value=Spara>
+    </form>
 
     <table>
     {% for function in functions %}
@@ -49,13 +52,13 @@
 
     <script>
 
-        $('.event-select').ddslick({
+        $('#event-select').ddslick({
             onSelected: function(selectedData){
                 //callback function: do something with selectedData;
             }
         });
 
-        $('.event-select2').ddslick({
+        $('#event-select2').ddslick({
             onSelected: function(selectedData){
                 //callback function: do something with selectedData;
             }
