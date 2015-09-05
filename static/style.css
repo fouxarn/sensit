@@ -43,3 +43,10 @@
     margin-left: -5px ;
 }
 
+.card-content{
+    overflow: visible;
+}
+
+.card{
+    overflow: visible;
+}
