@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask.ext.sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -7,9 +7,14 @@ app.config.from_object('config')
 db = SQLAlchemy(app)
 from models import *
 
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    if request.method == 'POST':
+        p = Plate.query.get(request.form['plate_id'])
+        f = Function(request.form['function'])
+        p.functions.append(f)
+    plates = Plate.query.all()
+    return render_template('index.html', plates=plates)
 
 @app.route("/sensors")
 def sensor():
