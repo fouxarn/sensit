@@ -13,19 +13,16 @@
 
 .event div {
     float: left;
-    margin: 8px;
-}
-
-.dd-selected, .dd-select{
-    border: 0;
+    margin:0 5px;
 }
 
 .card-panel, .dd-selected, .dd-option{
-     background-color: #fafafa;
+    background-color: #fafafa;
 }
 
 .card-panel{
-    padding: 5px;
+    padding: 20px;
+    padding-bottom: 5px;
 }
 
 .dd-option{
@@ -34,11 +31,15 @@
 
 /* TODO: fix correct centering of image */
 .event img {
-margin-left: 18px;
-    margin-bottom: 3px;
+    margin-left: 12px;
+    margin-bottom: 0px;
+    width: 80px;
+    height: 80px;
+    margin-top: -6px;
 }
 
+
 .dd-pointer{
-    margin-right: -5px ;
+    margin-left: -5px ;
 }
 

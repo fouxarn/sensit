@@ -22,13 +22,10 @@
     defaults = {
         data: [],
         keepJSONItemsOnTop: false,
-        width: 260,
         height: null,
-        background: "#eee",
         selectText: "",
         defaultSelectedIndex: null,
-        truncateDescription: true,
-        imagePosition: "left",
+        truncateDescription: false,
         showSelectedHTML: true,
         clickOffToClose: true,
         onSelected: function () { }
@@ -39,7 +36,7 @@
 
     //CSS for ddSlick
     ddslickCSS = '<style id="css-ddslick" type="text/css">' +
-                '.dd-select{ border-radius:2px; border:solid 1px #ccc; position:relative; cursor:pointer;}' +
+                '.dd-select{ border-radius:2px; position:relative; cursor:pointer;}' +
                 '.dd-desc { color:#aaa; display:block; overflow: hidden; font-weight:normal; line-height: 1.4em; }' +
                 '.dd-selected{ overflow:hidden; display:block; padding:10px; font-weight:bold;}' +
                 '.dd-pointer{ width:0; height:0; position:absolute; right:10px; top:50%; margin-top:-3px;}' +
@@ -51,7 +48,7 @@
                 '.dd-option:hover{ background:#f3f3f3; color:#000;}' +
                 '.dd-selected-description-truncated { text-overflow: ellipsis; white-space:nowrap; }' +
                 '.dd-option-selected { background:#f6f6f6; }' +
-                '.dd-option-image, .dd-selected-image { vertical-align:middle; float:left; margin-right:5px; max-width:64px;}' +
+                '.dd-option-image, .dd-selected-image { vertical-align:middle; float:left; margin-right:5px;}' +
                 '.dd-image-right { float:right; margin-right:15px; margin-left:5px;}' +
                 '.dd-container{ position:relative;}​ .dd-selected-text { font-weight:bold}​</style>';
 
