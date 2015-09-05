@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div class="row">
+<div class="col l12">
+    <h5>Functions</h5>
+    <div class="divider"></div>
+    <br />
+
+    <div class="row">
+    {% for function in functions%}
+    <div class="col l4">
+        <div class="card small">
+            <div style="max-width:100px;margin-left:auto;margin-right:auto;max-height:110px;padding-top:10px" class="card-image valign-wrapper">
+                <img class="valign" src={{url_for('static', filename=function.image)}}>
+            </div>
+            <div class="card-content" style="height:400px">
+                <span class="card-title grey-text text-darken-4">{{ function.name }}</span>
+                <div class="row">
+                    <div class="input-field col s5">
+                        <select>
+                            {% for plate in plates %}
+                                <option value="1">{{ plate.name }}</option>
+                            {% endfor %}
+                        </select>
+                        <label>Plate</label>
+                    </div>
+                    <div class="input-field col s2 offset-s1">
+                        <select>
+                          <option value="" disabled selected>></option>
+                          <option value="1"><</option>
+                          <option value="2">=</option>
+                        </select>
+                    </div>
+                    <div class="input-field col s2 offset-s1">
+                        <input value="80" id="first_name" type="text" class="validate">
+                        <label for="first_name">Weight</label>
+                    </div>
+                    <button class="btn waves-effect waves-light right" type="submit" name="action">Save
+                        <i class="material-icons">send</i>
+                      </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <em>No functions yet!</em>
+    {% endfor %}
+    </div>
+</div>
+</div>
+
+<script>
+
+    $(document).ready(function() {
+        $('select').material_select();
+      });
+
+</script>
+
+
+{% endblock %}

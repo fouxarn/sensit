@@ -44,3 +44,11 @@ img{
 .saveButton{
     margin-top: 60px;
 }
+
+.card-content{
+    overflow: visible;
+}
+
+.card{
+    overflow: visible;
+}

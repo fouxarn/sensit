@@ -1,10 +1,12 @@
 from flask import Flask, render_template, request
 from flask.ext.sqlalchemy import SQLAlchemy
+from flask_mail import Mail, Message
 
 app = Flask(__name__)
 app.config.from_object('config')
 
 db = SQLAlchemy(app)
+mail = Mail(app)
 from models import *
 
 @app.route("/", methods=['GET', 'POST'])
@@ -27,6 +29,19 @@ def sensor():
 @app.route("/stats")
 def stats():
     return render_template('stats.html')
+
+@app.route("/functions")
+def functions():
+    functions = Function.query.all()
+    plates = Plate.query.all()
+    return render_template('functions.html', plates=plates, functions=functions)
+
+def send_mail(text):
+    msg = Message('Notifiering',
+	       sender='you@dgoogle.com',
+	       recipients=['dsjovall@gmail.com'])
+    msg.body = text
+    mail.send(msg)
 
 if __name__ == "__main__":
     app.run()
