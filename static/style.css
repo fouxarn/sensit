@@ -4,12 +4,41 @@
 
 .dd-option-description, .dd-selected-description{
     clear: both;
-    font-size: 15px;
-    width: 80px;
+    font-size: 16px;
+    width: 100px;
+    text-align: center;
+    color: black;
 }
 
 
 .event div {
     float: left;
-    margin: 5px;
+    margin: 8px;
 }
+
+.dd-selected, .dd-select{
+    border: 0;
+}
+
+.card-panel, .dd-selected, .dd-option{
+     background-color: #fafafa;
+}
+
+.card-panel{
+    padding: 5px;
+}
+
+.dd-option{
+    text-align: center;
+}
+
+/* TODO: fix correct centering of image */
+.event img {
+margin-left: 18px;
+    margin-bottom: 3px;
+}
+
+.dd-pointer{
+    margin-right: -5px ;
+}
+
