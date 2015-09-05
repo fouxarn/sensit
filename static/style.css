@@ -1,7 +1,3 @@
-.event {
-    font-size: 70px;
-}
-
 .dd-option-description, .dd-selected-description{
     clear: both;
     font-size: 16px;
@@ -13,7 +9,11 @@
 
 .event div {
     float: left;
-    margin:0 5px;
+    display: block;
+}
+
+img{
+    clear:both;
 }
 
 .card-panel, .dd-selected, .dd-option{
@@ -21,25 +21,26 @@
 }
 
 .card-panel{
-    padding: 20px;
-    padding-bottom: 5px;
+    padding: 5px;
 }
 
 .dd-option{
     text-align: center;
 }
 
-/* TODO: fix correct centering of image */
-.event img {
-    margin-left: 12px;
-    margin-bottom: 0px;
-    width: 80px;
-    height: 80px;
-    margin-top: -6px;
-}
-
 
 .dd-pointer{
-    margin-left: -5px ;
+    margin-right: -10px;
 }
 
+#addnewDiv{
+    display: none;
+}
+
+.addnewButtonDiv{
+    text-align: center;
+}
+
+.saveButton{
+    margin-top: 60px;
+}

@@ -2,66 +2,78 @@
 {% block content %}
     <br />
 
-    <form action="{{ url_for('index') }}" method=post>
-    <div class="row event">
-
-        <div class="col s12">
-            <div class="card-panel ">
-
-                <div>If</div>
-
-
-                <select id="event-select" name="function_id">
-                    {% for function in functions %}
-                    <option value={{function.id}} data-imagesrc={{url_for('static', filename=function.image)}} data-description={{function.name}}></option>
-                    {% endfor %}
-                </select>
-
-                <div>then</div>
-
-                <select id="event-select2" name="solution_id">
-                    {% for solution in solutions %}
-                    <option value={{solution.id}} data-imagesrc={{url_for('static', filename=solution.image)}} data-description={{solution.name}}></option>
-                    {% endfor %}
-                </select>
-
-            </div>
-        </div>
-    </div>
-    <input type=submit value=Spara>
-    </form>
 
     {% for function in functions %}
-    <div class="row valign-wrapper">
-    {% if function.solutions %}
-    <div class="col l1 offset-l1 valign">
-        <h2>IF</h2>
-    </div>
-    <div class="col l1 valign">
-        <img src={{url_for('static', filename=function.image)}}></img>{{ function.name }}
-    </div>
-    <div class="col l1 valign offset-l1">
-        <h2>THEN</h2>
-    </div>
-    <div class="col l1 offset-l1">
-        {% for solution in function.solutions %}
-            <img src={{url_for('static', filename=solution.image)}}></img>{{ solution.name }}
-        {% else %}
-            <em>Inga lösningar</em>
-        {% endfor %}
-    </div>
-    {% endif %}
-    </div>
-    <div class="divider"></div>
+        <div class="row valign-wrapper">
+            <div class="card-panel valign-wrapper">
+
+                {% if function.solutions %}
+                    <div class="col l1 offset-l1 valign">
+                        <h2>IF</h2>
+                    </div>
+                    <div class="col l1 valign">
+                        <img src={{url_for('static', filename=function.image)}} />{{ function.name }}
+                    </div>
+                    <div class="col l1 valign offset-l1">
+                        <h2>THEN</h2>
+                    </div>
+                    <div class="col l1 offset-l2">
+                        {% for solution in function.solutions %}
+                            <img src={{url_for('static', filename=solution.image)}} />{{ solution.name }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="col l1">
+                <div class="card-panel center">
+                    <a class="btn-floating waves-effect waves-light red delete"><i class="material-icons">delete</i></a>
+                </div>
+            </div>
+
+        </div>
     {% else %}
         <em>Inga funktioner</em>
-    </div>
-    <div class="divider"></div>
     {% endfor %}
-    <div class="row">
-        <div class="col l1 offset-l2">
-        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
-        </div>
+
+
+        <form action="{{ url_for('index') }}" method="post" id="addnewDiv">
+            <div class="row event">
+                <div class="card-panel">
+                    <div class="col l1 offset-l1 valign">
+                        <h2>IF</h2>
+                    </div>
+                    <div class="col l2 valign">
+                        <select id="event-select" name="function_id">
+                            {% for function in functions %}
+                                <option value={{function.id}} data-imagesrc={{url_for('static', filename=function.image)}} data-description={{function.name}}></option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col l1 valign offset-l1">
+                        <h2>THEN</h2>
+                    </div>
+                    <div class="col l4 offset-l2">
+                        <select id="event-select2" name="solution_id">
+                            {% for solution in solutions %}
+                                <option value={{solution.id}} data-imagesrc={{url_for('static', filename=solution.image)}} data-description={{solution.name}}></option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col l1">
+                    <button class="saveButton btn waves-effect waves-light green" type="submit" name="action">Save
+                        <i class="material-icons">send</i>
+                    </button>
+                </div>
+            </div>
+        </form>
+
+
+
+    <div class="row addnewButtonDiv">
+        <a class="addnew btn-floating btn-large waves-effect waves-light green"><i class="material-icons">add</i></a>
     </div>
 
     <script>
@@ -77,6 +89,20 @@
                 //callback function: do something with selectedData;
             }
         });
+
+        $(".delete").click(function(){
+            $(this).closest(".row").toggle();
+        });
+
+        $(".addnew").click(function(){
+            $("#addnewDiv").show();
+            $(this).hide();
+        });
+
+        $(".saveButton").click(function(){
+            location.reload();
+        });
+
 
     </script>
 

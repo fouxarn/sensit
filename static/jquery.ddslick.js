@@ -37,7 +37,7 @@
     //CSS for ddSlick
     ddslickCSS = '<style id="css-ddslick" type="text/css">' +
                 '.dd-select{ border-radius:2px; position:relative; cursor:pointer;}' +
-                '.dd-desc { color:#aaa; display:block; overflow: hidden; font-weight:normal; line-height: 1.4em; }' +
+                '.dd-desc { display:block; overflow: hidden; font-weight:normal; line-height: 1.4em; }' +
                 '.dd-selected{ overflow:hidden; display:block; padding:10px; font-weight:bold;}' +
                 '.dd-pointer{ width:0; height:0; position:absolute; right:10px; top:50%; margin-top:-3px;}' +
                 '.dd-pointer-down{ border:solid 5px transparent; border-top:solid 5px #000; }' +
