@@ -37,7 +37,7 @@ def getSMHIdata(timeString):
 
 
 
-string = '17:00:00'
+#string = '17:00:00'
 #readDataRain(string)
 #readDataTempature(string)
-print(getSMHIdata(string))
+#print(getSMHIdata(string))

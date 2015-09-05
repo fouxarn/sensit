@@ -1,10 +1,11 @@
 from models import *
+from SMHIData import getSMHIdata
 
 def smhi():
-    return
+    print(getSMHIdata("17:00:00"))
 
 def evaluate_solution(solution):
-    switcher {
+    switcher = {
         'SMHI': smhi,
     }
 
