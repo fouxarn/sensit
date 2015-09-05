@@ -1,6 +1,36 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <p>Sensors</p>
+
+<div class="row">
+<div class="col l8 offset-l2">
+    <h5>Sensorer</h5>
+    <div class="divider"></div>
+    <br />
+    <table class="striped responsive-table">
+        <thead>
+            <tr>
+                <th data-field="name">Namn</th>
+                <th data-field="place">Plats</th>
+                <th data-field="weigth">Vikt</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for plate in plates %}
+        <tr>
+            <td>{{ plate.name }}</td>
+            <td>{{ plate.place }}</td>
+            <td>{{ plate.weight }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <em>Inga sensorer</em>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
 
 {% endblock %}

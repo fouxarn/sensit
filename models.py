@@ -13,28 +13,32 @@ solution_trigger = db.Table('solution_trigger',
 class Plate(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), unique=True)
+    place = db.Column(db.String(30))
     weight = db.Column(db.Float)
     functions = db.relationship('Function', secondary=plate_trigger,
         backref=db.backref('plates', lazy='dynamic'))
 
-    def __init__(self, name):
+    def __init__(self, name, place):
         self.name = name
+        self.place = place
         self.weight = 0
 
     def __repr__(self):
-        return '{} {} {}'.format(self.id, self.name, self.weight)
+        return '{} {} {} {}'.format(self.id, self.name, self.place, self.weight)
 
 class Function(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), unique=True)
     regex = db.Column(db.String(80))
     solutions = db.relationship('Solution', secondary=solution_trigger,
         backref=db.backref('functions', lazy='dynamic'))
 
-    def __init__(self, regex):
+    def __init__(self, name, regex):
+        self.name = name
         self.regex = regex
 
     def __repr__(self):
-        return '{} {}'.format(self.id, self.regex)
+        return '{} {} {}'.format(self.id, self.name, self.regex)
 
 class Solution(db.Model):
     id = db.Column(db.Integer, primary_key=True)
