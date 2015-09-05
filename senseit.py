@@ -5,10 +5,19 @@ app = Flask(__name__)
 app.config.from_object('config')
 
 db = SQLAlchemy(app)
-import models
+from models import *
 
 @app.route("/")
 def index():
+    return "upp hund"
+
+@app.route("/sensors")
+def sensor():
+    plates = Plate.query.all()
+    return render_template('sensors.html', plates=plates)
+
+@app.route("/stats")
+def stats():
     return "upp hund"
 
 if __name__ == "__main__":
