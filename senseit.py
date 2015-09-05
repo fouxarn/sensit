@@ -16,7 +16,8 @@ def index():
         db.session.add(f)
         db.session.commit()
     functions = Function.query.all()
-    return render_template('index.html', functions=functions)
+    solutions = Solution.query.all()
+    return render_template('index.html', functions=functions, solutions=solutions)
 
 @app.route("/sensors")
 def sensor():
