@@ -27,6 +27,25 @@
         </div>
     </div>
 
+    <table>
+    {% for function in functions %}
+    <tr>
+        <td>{{ function.name }} <img src={{url_for('static', filename=function.image)}}></img></td>
+        {% for solution in function.solutions %}
+            <td>{{ solution.name }} <img src={{url_for('static', filename=solution.image)}}></img></td>
+        {% else %}
+            <tr>
+                <em>Inga lösningar</em>
+            </tr>
+        {% endfor %}
+    </tr>
+    {% else %}
+    <tr>
+        <em>Inga funktioner</em>
+    </tr>
+    {% endfor %}
+    </table>
+
 
     <script>
 
