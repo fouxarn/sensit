@@ -11,10 +11,13 @@ from models import *
 def index():
     if request.method == 'POST':
         f = Function.query.get(request.form['function_id'])
-        s = Function.query.get(request.form['solution_id'])
+        s = Solution.query.get(request.form['solution_id'])
         f.solutions.append(s)
+        db.session.add(f)
+        db.session.commit()
     functions = Function.query.all()
-    return render_template('index.html', functions=functions)
+    solutions = Solution.query.all()
+    return render_template('index.html', functions=functions, solutions=solutions)
 
 @app.route("/sensors")
 def sensor():

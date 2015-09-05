@@ -12,16 +12,17 @@
 
 
                 <select id="event-select" name="function_id">
-                    <option value="0" data-imagesrc="static/images/car.png" data-description="Car leaves"> </option>
-                    <option value="1" data-imagesrc="static/images/bed.png" data-description="Going to bed"></option>
-                    <option value="2" selected="selected" data-imagesrc="static/images/milk.png" data-description="Milk empty"></option>
+                    {% for function in functions %}
+                    <option value={{function.id}} data-imagesrc={{url_for('static', filename=function.image)}} data-description={{function.name}}></option>
+                    {% endfor %}
                 </select>
 
                 <div>then</div>
 
                 <select id="event-select2" name="solution_id">
-                    <option value="0" data-imagesrc="static/images/weather.png" data-description="Send weather report"></option>
-                    <option value="1" selected="selected" data-imagesrc="static/images/parking.png" data-description="Suggest parking"></option>
+                    {% for solution in solutions %}
+                    <option value={{solution.id}} data-imagesrc={{url_for('static', filename=solution.image)}} data-description={{solution.name}}></option>
+                    {% endfor %}
                 </select>
 
             </div>
@@ -30,25 +31,38 @@
     <input type=submit value=Spara>
     </form>
 
-    <table>
     {% for function in functions %}
-    <tr>
-        <td>{{ function.name }} <img src={{url_for('static', filename=function.image)}}></img></td>
+    <div class="row valign-wrapper">
+    {% if function.solutions %}
+    <div class="col l1 offset-l1 valign">
+        <h2>IF</h2>
+    </div>
+    <div class="col l1 valign">
+        <img src={{url_for('static', filename=function.image)}}></img>{{ function.name }}
+    </div>
+    <div class="col l1 valign offset-l1">
+        <h2>THEN</h2>
+    </div>
+    <div class="col l1 offset-l1">
         {% for solution in function.solutions %}
-            <td>{{ solution.name }} <img src={{url_for('static', filename=solution.image)}}></img></td>
+            <img src={{url_for('static', filename=solution.image)}}></img>{{ solution.name }}
         {% else %}
-            <tr>
-                <em>Inga lösningar</em>
-            </tr>
+            <em>Inga lösningar</em>
         {% endfor %}
-    </tr>
+    </div>
+    {% endif %}
+    </div>
+    <div class="divider"></div>
     {% else %}
-    <tr>
         <em>Inga funktioner</em>
-    </tr>
+    </div>
+    <div class="divider"></div>
     {% endfor %}
-    </table>
-
+    <div class="row">
+        <div class="col l1 offset-l2">
+        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+        </div>
+    </div>
 
     <script>
 
