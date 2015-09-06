@@ -18,19 +18,19 @@
 
 <nav>
     <div class="container">
-        <a href="/" class="brand-logo center">Sensit</a>
+        <a href="/" class="brand-logo">Sensit</a>
 
         <ul class="right hide-on-med-and-down">
             <li {% if request.path == "/" %}class="active"{% endif %}><a href="/">Events</a></li>
             <li {% if request.path == "/sensors" %}class="active"{% endif %}><a href="sensors">Sensors</a></li>
             <li {% if request.path == "/functions" %}class="active"{% endif %}><a href="functions">Functions</a></li>
-            <li {% if request.path == "/stats" %}class="active"{% endif %}><a href="stats">Statistics</a></li>
+            <!-- <li {% if request.path == "/stats" %}class="active"{% endif %}><a href="stats">Statistics</a></li> -->
         </ul>
         <ul id="slide-out" class="side-nav">
             <li {% if request.path == "/" %}class="active"{% endif %}><a href="/">Events</a></li>
             <li {% if request.path == "/sensors" %}class="active"{% endif %}><a href="sensors">Sensors</a></li>
             <li {% if request.path == "/functions" %}class="active"{% endif %}><a href="functions">Functions</a></li>
-            <li {% if request.path == "/stats" %}class="active"{% endif %}><a href="stats">Statistics</a></li>
+            <!-- <li {% if request.path == "/stats" %}class="active"{% endif %}><a href="stats">Statistics</a></li> -->
         </ul>
         <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
     </div>
