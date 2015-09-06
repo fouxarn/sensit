@@ -27,6 +27,7 @@ def index():
 
     functions = Function.query.all()
     solutions = Solution.query.all()
+    smhi()
     return render_template('index.html', functions=functions, solutions=solutions)
 
 @app.route("/sensors")
@@ -62,13 +63,17 @@ from SMHIData import getSMHIdata
 from PakeringsData import getPakeringLkpgdata
 
 def smhi():
-    send_mail("hej")
-    print("hej")
+    test = getSMHIdata("18:00:00")['t']
+    test2 = "Det kommer bli " + str(test) + " grader ute"
+    send_mail("SENSIT VÄDER", test2)
+    print("smhi")
 
 
 def parkering():
-    print(getPakeringLkpgdata("timestring"))
-    send_mail("hej")
+    test = getPakeringLkpgdata("timestring")
+    test2 = "Det finns ledig plats " + str(test)
+    send_mail("SENSIT PARKERING", test2)
+    print("parkering")
 
 def evaluate_solution(solution):
     switcher = {
@@ -79,14 +84,15 @@ def evaluate_solution(solution):
     func = switcher.get(solution.name, lambda: "nothing")
     return func()
 
-def send_mail(text):
-    msg = Message('Notifiering',
+def send_mail(rubrik, text):
+    msg = Message(rubrik,
 	       sender='you@dgoogle.com',
 	       recipients=['dsjovall@gmail.com'])
     msg.body = text
     mail.send(msg)
 
 def evaluate_function(function):
+    print(function)
     function = function.split(" ")
     weight = Plate.query.get(function[0]).weight
     return eval(str(weight) + function[1] + function[2])
