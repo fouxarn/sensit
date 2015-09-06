@@ -62,7 +62,7 @@ from SMHIData import getSMHIdata
 from PakeringsData import getPakeringLkpgdata
 
 def smhi():
-    send_mail(getSMHIdata("17:00:00"))
+    send_mail(str(getSMHIdata("17:00:00")))
     print(getSMHIdata("17:00:00"))
 
 def parkering():
