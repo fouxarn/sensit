@@ -62,8 +62,8 @@ from SMHIData import getSMHIdata
 from PakeringsData import getPakeringLkpgdata
 
 def smhi():
-    send_mail(str(getSMHIdata("17:00:00")))
-    print(getSMHIdata("17:00:00"))
+    send_mail(getSMHIdata("19:00:00")['t'])
+    print(getSMHIdata("19:00:00")['t'])
 
 def parkering():
     print(getPakeringLkpgdata("timestring"))

@@ -6,7 +6,7 @@
     {% for function in functions %}
     {% if function.solutions %}
         <div class="row valign-wrapper">
-            <div class="card-panel valign-wrapper col l6 offset-l1" style="padding:10px">
+            <div class="card-panel valign-wrapper" style="padding:10px">
 
 
                     <div class="col l1 valign">
@@ -15,10 +15,10 @@
                     <div class="col l1 offset-l1 valign">
                         <img src={{url_for('static', filename=function.image)}} />{{ function.name }}
                     </div>
-                    <div class="col l1 valign offset-l2">
+                    <div class="col l1 valign offset-l1">
                         <h2>THEN</h2>
                     </div>
-                    <div class="col l1 offset-l3">
+                    <div class="col l4 offset-l2">
                         {% for solution in function.solutions %}
                             <img src={{url_for('static', filename=solution.image)}} />{{ solution.name }}
                         {% endfor %}
