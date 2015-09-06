@@ -67,6 +67,7 @@ def smhi():
 
 def parkering():
     print(getPakeringLkpgdata("timestring"))
+    send_mail(getSMHIdata("19:00:00")['t'])
 
 def evaluate_solution(solution):
     switcher = {
