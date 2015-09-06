@@ -10,8 +10,8 @@ def parkering():
 
 def evaluate_solution(solution):
     switcher = {
-        'SMHI': smhi,
-        'PARK': parkering,
+        'Send weather report': smhi,
+        'Find parking': parkering,
     }
 
     func = switcher.get(solution.name, lambda: "nothing")
