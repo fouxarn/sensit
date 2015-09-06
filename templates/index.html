@@ -5,23 +5,22 @@
 
     {% for function in functions %}
     {% if function.solutions %}
-        <div class="row valign-wrapper">
-            <div class="card-panel valign-wrapper" style="padding:10px">
-
-
-                    <div class="col l1 valign">
+        <div class="row valign-wrapper col l8">
+            <div style="margin-left:auto;margin-right:auto">
+            <div class="card-panel valign-wrapper left" style="padding:10px">
+                    <div class="valign" style="padding-left:20px">
                         <h2>IF</h2>
                     </div>
-                    <div class="col l1 valign">
+                    <div class="valign">
                         <figure>
                             <img src={{url_for('static', filename=function.image)}} />
                             <figcaption>{{ function.name }}</figcaption>
                         </figure>
                     </div>
-                    <div class="col l1 valign offset-l2">
+                    <div class="valign">
                         <h2>THEN</h2>
                     </div>
-                    <div class="col l4 offset-l2">
+                    <div class="">
                         {% for solution in function.solutions %}
                         <figure>
                             <img src={{url_for('static', filename=solution.image)}} />
@@ -30,19 +29,17 @@
                         </figure>
                         {% endfor %}
                     </div>
-
+                    <div class="right valign" style="padding-left:20px;padding-right:20px">
+                        <div class="card-panel center" style="padding:10px">
+                            <form action="{{ url_for('index') }}" method="POST">
+                            <input type="hidden" name="method" value="DELETE" />
+                            <input type="hidden" name="function_id" value={{ function.id }} />
+                            <a class="btn-floating waves-effect waves-light red delete" onClick="this.parentNode.submit()"><i class="material-icons">delete</i></a>
+                            </form>
+                        </div>
+                    </div>
             </div>
-
-            <div class="col l1">
-                <div class="card-panel center" style="padding:10px">
-                    <form action="{{ url_for('index') }}" method="POST">
-                    <input type="hidden" name="method" value="DELETE" />
-                    <input type="hidden" name="function_id" value={{ function.id }} />
-                    <a class="btn-floating waves-effect waves-light red delete" onClick="this.parentNode.submit()"><i class="material-icons">delete</i></a>
-                    </form>
-                </div>
-            </div>
-
+        </div>
         </div>
     {% endif %}
     {% else %}
@@ -52,34 +49,35 @@
 
     <form action="{{ url_for('index') }}" method="post" id="addnewDiv">
         <input type="hidden" name="method" value="ADD" />
-        <div class="row event">
-            <div class="card-panel col l6 offset-l1">
-                <div class="col l1 valign">
+        <div class="row event valign-wrapper col l8">
+            <div style="margin-left:auto;margin-right:auto">
+            <div class="card-panel ">
+                <div class="valign" style="padding-left:20px">
                     <h2>IF</h2>
                 </div>
-                <div class="col l2 offset-l1 valign">
+                <div class="valign" style="padding-left:20px">
                     <select id="event-select" name="function_id">
                         {% for function in functions %}
                             <option value={{function.id}} data-imagesrc={{url_for('static', filename=function.image)}} data-description="{{function.name}}"></option>
                         {% endfor %}
                     </select>
                 </div>
-                <div class="col l1 valign offset-l1">
+                <div class="valign" style="padding-left:20px">
                     <h2>THEN</h2>
                 </div>
-                <div class="col l4 offset-l2" style="padding-left:50px">
+                <div class="" style="padding-left:50px">
                     <select id="event-select2" name="solution_id">
                         {% for solution in solutions %}
                             <option value={{solution.id}} data-imagesrc={{url_for('static', filename=solution.image)}} data-description="{{solution.name}}"></option>
                         {% endfor %}
                     </select>
                 </div>
+                <div style="padding-left:20px;padding-right:20px">
+                    <button class="saveButton btn waves-effect waves-light green" type="submit" name="action">Save
+                        <i class="material-icons">send</i>
+                    </button>
+                </div>
             </div>
-
-            <div class="col l1">
-                <button class="saveButton btn waves-effect waves-light green" type="submit" name="action">Save
-                    <i class="material-icons">send</i>
-                </button>
             </div>
         </div>
     </form>
