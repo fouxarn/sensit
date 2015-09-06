@@ -75,6 +75,7 @@ def evaluate_solution(solution):
     }
 
     func = switcher.get(solution.name, lambda: "nothing")
+    print("valuate")
     return func()
 
 def send_mail(text):
