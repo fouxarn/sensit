@@ -66,6 +66,7 @@ def smhi():
     print(getSMHIdata("19:00:00")['t'])
 
 def parkering():
+    return 
     #print(getPakeringLkpgdata("timestring"))
 
 def evaluate_solution(solution):
