@@ -1,7 +1,7 @@
 from models import *
 from SMHIData import getSMHIdata
-from ParkeringsData import getParkeringLkpgdata
-from senseit import send_mail
+from PakeringsData import getPakeringLkpgdata
+from senseit import mail
 
 def smhi():
     send_mail(getSMHIdata("17:00:00"))
@@ -18,3 +18,10 @@ def evaluate_solution(solution):
 
     func = switcher.get(solution.name, lambda: "nothing")
     return func()
+
+def send_mail(text):
+    msg = Message('Notifiering',
+	       sender='you@dgoogle.com',
+	       recipients=['dsjovall@gmail.com'])
+    msg.body = text
+    mail.send(msg)

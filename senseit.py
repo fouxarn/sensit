@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask_mail import Mail, Message
+import string
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -48,12 +49,32 @@ def functions():
         function.weight = temp[2]
     return render_template('functions.html', plates=plates, functions=functions)
 
-@app.route("/update", methods=['POST'])
+@app.route("/update", methods=['GET', 'POST'])
 def update():
+    print(request.data)
     p = Plate.query.get(request.form['plate_id'])
     p.weight = request.form['weight']
     db.session.commit()
-    update(p.id)
+    update_plate(p.id)
+
+from SMHIData import getSMHIdata
+from PakeringsData import getPakeringLkpgdata
+
+def smhi():
+    send_mail(getSMHIdata("17:00:00"))
+    print(getSMHIdata("17:00:00"))
+
+def parkering():
+    print(getPakeringLkpgdata("timestring"))
+
+def evaluate_solution(solution):
+    switcher = {
+        'Send weather report': smhi,
+        'Find parking': parkering,
+    }
+
+    func = switcher.get(solution.name, lambda: "nothing")
+    return func()
 
 def send_mail(text):
     msg = Message('Notifiering',
@@ -61,6 +82,18 @@ def send_mail(text):
 	       recipients=['dsjovall@gmail.com'])
     msg.body = text
     mail.send(msg)
+
+def evaluate_function(function):
+    function = function.split(" ")
+    weight = Plate.query.get(function[0]).weight
+    return eval(str(weight) + function[1] + function[2])
+
+def update_plate(plate_id):
+    functions = Plate.query.get(plate_id).functions
+    for function in functions:
+        if evaluate_function(function.regex):
+            for solution in function.solutions:
+                evaluate_solution(solution)
 
 if __name__ == "__main__":
     app.run('0.0.0.0')
