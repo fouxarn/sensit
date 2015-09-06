@@ -51,11 +51,11 @@ def functions():
 
 @app.route("/update", methods=['GET', 'POST'])
 def update():
-    print(request.data)
     p = Plate.query.get(request.form['plate_id'])
     p.weight = request.form['weight']
     db.session.commit()
     update_plate(p.id)
+    return ("Hej")
 
 from SMHIData import getSMHIdata
 from PakeringsData import getPakeringLkpgdata
