@@ -62,12 +62,12 @@ from SMHIData import getSMHIdata
 from PakeringsData import getPakeringLkpgdata
 
 def smhi():
-    send_mail(getSMHIdata("19:00:00")['t'])
-    print(getSMHIdata("19:00:00")['t'])
+    send_mail("hej")
+    print("hej")
 
 def parkering():
     print(getPakeringLkpgdata("timestring"))
-    send_mail(getSMHIdata("19:00:00")['t'])
+    send_mail("hej")
 
 def evaluate_solution(solution):
     switcher = {
