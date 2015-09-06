@@ -22,7 +22,7 @@ def index():
             f = Function.query.get(request.form['function_id'])
             db.session.delete(f)
             db.session.commit()
-        
+
     functions = Function.query.all()
     solutions = Solution.query.all()
     return render_template('index.html', functions=functions, solutions=solutions)
@@ -46,6 +46,13 @@ def functions():
         function.operator = temp[1]
         function.weight = temp[2]
     return render_template('functions.html', plates=plates, functions=functions)
+
+@app.route("/update")
+def update():
+    p = Plate.query.get(request.form['plate_id'])
+    p.weight = request.form['weight']
+    db.session.commit()
+    update(p.id)
 
 def send_mail(text):
     msg = Message('Notifiering',

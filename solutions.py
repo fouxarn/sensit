@@ -1,8 +1,10 @@
 from models import *
 from SMHIData import getSMHIdata
 from ParkeringsData import getParkeringLkpgdata
+from senseit import send_mail
 
 def smhi():
+    send_mail(getSMHIdata("17:00:00"))
     print(getSMHIdata("17:00:00"))
 
 def parkering():
