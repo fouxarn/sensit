@@ -19,7 +19,7 @@ s1 = Solution('Send weather report', 'images/weather.png')
 s2 = Solution('Find parking', 'images/parking.png')
 s3 = Solution('Send shopping remainder', 'images/shopping.png')
 
-p1.functions.append(f1)
+p1.functions.append(f2)
 p2.functions.append(f2)
 f1.solutions.append(s1)
 f1.solutions.append(s2)
