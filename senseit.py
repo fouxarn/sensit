@@ -48,7 +48,7 @@ def functions():
         function.weight = temp[2]
     return render_template('functions.html', plates=plates, functions=functions)
 
-@app.route("/update")
+@app.route("/update", methods=['POST'])
 def update():
     p = Plate.query.get(request.form['plate_id'])
     p.weight = request.form['weight']
