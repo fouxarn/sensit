@@ -52,9 +52,10 @@ def functions():
 @app.route("/update", methods=['GET', 'POST'])
 def update():
     p = Plate.query.get(request.form['plate_id'])
-    p.weight = request.form['weight']
-    db.session.commit()
-    update_plate(p.id)
+    if p.weight != request.form['weight']:
+        p.weight = request.form['weight']
+        db.session.commit()
+        update_plate(p.id)
     return ("Hej")
 
 from SMHIData import getSMHIdata
