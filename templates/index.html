@@ -12,15 +12,22 @@
                     <div class="col l1 valign">
                         <h2>IF</h2>
                     </div>
-                    <div class="col l1 offset-l1 valign">
-                        <img src={{url_for('static', filename=function.image)}} />{{ function.name }}
+                    <div class="col l1 valign">
+                        <figure>
+                            <img src={{url_for('static', filename=function.image)}} />
+                            <figcaption>{{ function.name }}</figcaption>
+                        </figure>
                     </div>
-                    <div class="col l1 valign offset-l1">
+                    <div class="col l1 valign offset-l2">
                         <h2>THEN</h2>
                     </div>
                     <div class="col l4 offset-l2">
                         {% for solution in function.solutions %}
-                            <img src={{url_for('static', filename=solution.image)}} />{{ solution.name }}
+                        <figure>
+                            <img src={{url_for('static', filename=solution.image)}} />
+                            <figcaption>{{ solution.name }}</figcaption>
+                            <br />
+                        </figure>
                         {% endfor %}
                     </div>
 

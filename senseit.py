@@ -65,6 +65,7 @@ def smhi():
     send_mail("hej")
     print("hej")
 
+
 def parkering():
     print(getPakeringLkpgdata("timestring"))
     send_mail("hej")
