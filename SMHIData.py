@@ -29,7 +29,7 @@ def getSMHIdata(timeString):
 	resp = requests.get(url=url)
 	data = json.loads(resp.text)
 	dataResult =data['timeseries']
-	string = str('2015-09-05T'+timeString+'Z')
+	string = str('2015-09-06T'+timeString+'Z')
 	pp = pprint.PrettyPrinter(indent=4)
 	for fields in dataResult:
 		if(fields['validTime']==string):
