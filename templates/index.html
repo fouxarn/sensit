@@ -4,10 +4,11 @@
 
 
     {% for function in functions %}
+    {% if function.solutions %}
         <div class="row valign-wrapper">
             <div class="card-panel valign-wrapper">
 
-                {% if function.solutions %}
+
                     <div class="col l1 offset-l1 valign">
                         <h2>IF</h2>
                     </div>
@@ -22,7 +23,7 @@
                             <img src={{url_for('static', filename=solution.image)}} />{{ solution.name }}
                         {% endfor %}
                     </div>
-                {% endif %}
+
             </div>
 
             <div class="col l1">
@@ -32,6 +33,7 @@
             </div>
 
         </div>
+    {% endif %}
     {% else %}
         <em>Inga funktioner</em>
     {% endfor %}
