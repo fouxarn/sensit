@@ -37,16 +37,16 @@
     //CSS for ddSlick
     ddslickCSS = '<style id="css-ddslick" type="text/css">' +
                 '.dd-select{ border-radius:2px; position:relative; cursor:pointer;}' +
-                '.dd-desc { display:block; overflow: hidden; font-weight:normal; line-height: 1.4em; }' +
-                '.dd-selected{ overflow:hidden; display:block; padding:10px; font-weight:bold;}' +
+                '.dd-desc { display:block; font-weight:normal; line-height: 1.4em; }' +
+                '.dd-selected{display:block; padding:10px; font-weight:bold;}' +
                 '.dd-pointer{ width:0; height:0; position:absolute; right:10px; top:50%; margin-top:-3px;}' +
                 '.dd-pointer-down{ border:solid 5px transparent; border-top:solid 5px #000; }' +
                 '.dd-pointer-up{border:solid 5px transparent !important; border-bottom:solid 5px #000 !important; margin-top:-8px;}' +
-                '.dd-options{ border:solid 1px #ccc; border-top:none; list-style:none; box-shadow:0px 1px 5px #ddd; display:none; position:absolute; z-index:2000; margin:0; padding:0;background:#fff; overflow:auto;}' +
-                '.dd-option{ padding:10px; display:block; border-bottom:solid 1px #ddd; overflow:hidden; text-decoration:none; color:#333; cursor:pointer;-webkit-transition: all 0.25s ease-in-out; -moz-transition: all 0.25s ease-in-out;-o-transition: all 0.25s ease-in-out;-ms-transition: all 0.25s ease-in-out; }' +
+                '.dd-options{ border:solid 1px #ccc; border-top:none; list-style:none; box-shadow:0px 1px 5px #ddd; display:none; position:absolute; z-index:2000; margin:0; padding:0;background:#fff;}' +
+                '.dd-option{ padding:10px; display:block; border-bottom:solid 1px #ddd; text-decoration:none; color:#333; cursor:pointer;-webkit-transition: all 0.25s ease-in-out; -moz-transition: all 0.25s ease-in-out;-o-transition: all 0.25s ease-in-out;-ms-transition: all 0.25s ease-in-out; }' +
                 '.dd-options > li:last-child > .dd-option{ border-bottom:none;}' +
                 '.dd-option:hover{ background:#f3f3f3; color:#000;}' +
-                '.dd-selected-description-truncated { text-overflow: ellipsis; white-space:nowrap; }' +
+                '.dd-selected-description-truncated {  }' +
                 '.dd-option-selected { background:#f6f6f6; }' +
                 '.dd-option-image, .dd-selected-image { vertical-align:middle; float:left; margin-right:5px;}' +
                 '.dd-image-right { float:right; margin-right:15px; margin-left:5px;}' +
@@ -66,6 +66,7 @@
         return this.each(function () {
             var obj = $(this),
                 data = obj.data('ddslick');
+
             //If the plugin has not been initialized yet
             if (!data) {
 
@@ -81,6 +82,8 @@
                         description: thisData.description,
                         imageSrc: thisData.imagesrc //keep it lowercase for HTML5 data-attributes
                     });
+                                   // document.write(thisData.description);
+
                 });
 
                 //Update Plugin data merging both HTML select data and JSON data for the dropdown
@@ -244,7 +247,7 @@
             ddSelected.html(
                     (selectedData.imageSrc ? '<img class="dd-selected-image' + (settings.imagePosition == "right" ? ' dd-image-right' : '') + '" src="' + selectedData.imageSrc + '" />' : '') +
                     (selectedData.text ? '<label class="dd-selected-text">' + selectedData.text + '</label>' : '') +
-                    (selectedData.description ? '<small class="dd-selected-description dd-desc' + (settings.truncateDescription ? ' dd-selected-description-truncated' : '') + '" >' + selectedData.description + '</small>' : '')
+                    (selectedData.description ? '<span class="dd-selected-description dd-desc' + (settings.description ? ' dd-selected-description-truncated' : '') + '" >' + selectedData.description + '</span>' : '')
                 );
 
         }
@@ -262,7 +265,7 @@
         close(obj);
 
         //Adjust appearence for selected option
-        adjustSelectedHeight(obj);
+       // adjustSelectedHeight(obj);
 
         //Callback function on selection
         if (typeof settings.onSelected == 'function') {
@@ -292,7 +295,7 @@
         }
 
         //Fix text height (i.e. display title in center), if there is no description
-        adjustOptionsHeight(obj);
+       // adjustOptionsHeight(obj);
     }
 
     //Private: Close the drop down options
