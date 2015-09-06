@@ -1,0 +1,27 @@
+// Bra att läsa
+https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c
+http://reidcarlberg.com/2015/02/27/read-data-from-multiple-arduinos-with-a-raspberry-pi-b-using-i2c-and-node-js/
+https://www.raspberrypi.org/forums/viewtopic.php?f=44&t=104133
+http://www.jameco.com/Jameco/workshop/circuitnotes/raspberry_pi_circuit_note_fig2a.jpg
+
+1. Installera moduler
+sudo modprobe i2c_bcm2708
+sudo modprobe i2c_dev
+
+2. Lägg till följande i /boot/config.txt
+
+dtparam=i2c1=on
+dtparam=spi=on
+i2c_bcm2708
+i2c_dev
+
+#. Testa så i2c funkar
+sudo i2cdetect -y 0
+
+$ ls -l /dev/spi*
+crw-rw---- 1 root spi 153, 0 Mar 13 22:17 /dev/spidev0.0
+crw-rw---- 1 root spi 153, 1 Mar 13 22:17 /dev/spidev0.1
+
+ $ ls -l /dev/i2c*
+crw-rw---- 1 root i2c 89, 0 Mar 15 12:54 /dev/i2c-0
+crw-rw---- 1 root i2c 89, 1 Mar 15 12:54 /dev/i2c-1
