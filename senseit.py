@@ -19,8 +19,9 @@ def index():
             db.session.add(f)
             db.session.commit()
         elif request.form['method'] == 'DELETE':
-            f = Function.query.get(request.form['function_id'])
-            db.session.delete(f)
+            function = Function.query.get(request.form['function_id'])
+            for solution in function.solutions:
+                function.solutions.remove(solution)
             db.session.commit()
 
     functions = Function.query.all()
