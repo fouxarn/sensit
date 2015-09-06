@@ -70,12 +70,11 @@ def parkering():
 
 def evaluate_solution(solution):
     switcher = {
-        'Send weather report': smhi,
-        'Find parking': parkering,
+        'SMHI': smhi,
+        'PARK': parkering,
     }
 
     func = switcher.get(solution.name, lambda: "nothing")
-    print("valuate")
     return func()
 
 def send_mail(text):
