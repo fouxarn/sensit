@@ -28,7 +28,11 @@
 
             <div class="col l1">
                 <div class="card-panel center" style="padding:10px">
-                    <a class="btn-floating waves-effect waves-light red delete"><i class="material-icons">delete</i></a>
+                    <form action="{{ url_for('index') }}" method="POST">
+                    <input type="hidden" name="method" value="DELETE" />
+                    <input type="hidden" name="function_id" value={{ function.id }} />
+                    <a class="btn-floating waves-effect waves-light red delete" onClick="this.parentNode.submit()"><i class="material-icons">delete</i></a>
+                    </form>
                 </div>
             </div>
 
@@ -40,6 +44,7 @@
 
 
     <form action="{{ url_for('index') }}" method="post" id="addnewDiv">
+        <input type="hidden" name="method" value="ADD" />
         <div class="row event">
             <div class="card-panel col l6 offset-l1">
                 <div class="col l1 valign">

@@ -50,8 +50,42 @@
     <em>No functions yet!</em>
     {% endfor %}
     <div class="col l4">
-        <div class="center" style="padding-top:120px">
+        <div class="center addnew" style="padding-top:120px">
         <a class="addnew btn-floating btn-large waves-effect waves-light green" ><i class="material-icons">add</i></a>
+        </div>
+        <div class="card small" id="addnewDiv">
+            <div class="card-image valign-wrapper" style="max-height:110px">
+                <img class="valign" src="http://placehold.it/300x200">
+            </div>
+            <div class="card-content" style="height:400px">
+                <span class="card-title grey-text text-darken-4">New function</span>
+                <div class="row">
+                    <div class="input-field col s5">
+                        <select>
+                            {% for plate in plates %}
+                                <option value="{{ plate.id }}">{{ plate.name }}</option>
+                            {% endfor %}
+                        </select>
+                        <label>Plate</label>
+                    </div>
+                    <div class="input-field col s2 offset-s1">
+                        <select>
+                          <option value="" disabled selected></option>
+                          <option value="1"><</option>
+                          <option value="2">></option>
+                          <option value="3">=</option>
+                        </select>
+                    </div>
+                    <div class="input-field col s2 offset-s1">
+                        <input value="" id="first_name" type="text" class="validate">
+                        <label for="first_name">Weight</label>
+                    </div>
+                    <button class="btn waves-effect waves-light right" type="submit" name="action">Save
+                        <i class="material-icons">send</i>
+                      </button>
+                </div>
+
+            </div>
         </div>
     </div>
     </div>
@@ -62,6 +96,11 @@
 
     $(document).ready(function() {
         $('select').material_select();
+      });
+
+      $(".addnew").click(function(){
+          $("#addnewDiv").show();
+          $(this).hide();
       });
 
 </script>

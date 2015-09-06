@@ -12,11 +12,17 @@ from models import *
 @app.route("/", methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        f = Function.query.get(request.form['function_id'])
-        s = Solution.query.get(request.form['solution_id'])
-        f.solutions.append(s)
-        db.session.add(f)
-        db.session.commit()
+        if request.form['method'] == 'ADD':
+            f = Function.query.get(request.form['function_id'])
+            s = Solution.query.get(request.form['solution_id'])
+            f.solutions.append(s)
+            db.session.add(f)
+            db.session.commit()
+        elif request.form['method'] == 'DELETE':
+            f = Function.query.get(request.form['function_id'])
+            db.session.delete(f)
+            db.session.commit()
+        
     functions = Function.query.all()
     solutions = Solution.query.all()
     return render_template('index.html', functions=functions, solutions=solutions)
