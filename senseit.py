@@ -34,6 +34,11 @@ def stats():
 def functions():
     functions = Function.query.all()
     plates = Plate.query.all()
+    for function in functions:
+        temp = function.regex.split(" ")
+        function.sensor = temp[0]
+        function.operator = temp[1]
+        function.weight = temp[2]
     return render_template('functions.html', plates=plates, functions=functions)
 
 def send_mail(text):
@@ -44,4 +49,4 @@ def send_mail(text):
     mail.send(msg)
 
 if __name__ == "__main__":
-    app.run()
+    app.run('0.0.0.0')

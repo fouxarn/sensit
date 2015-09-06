@@ -21,20 +21,21 @@
                     <div class="input-field col s5">
                         <select>
                             {% for plate in plates %}
-                                <option value="1">{{ plate.name }}</option>
+                                <option value={{ plate.id }} {% if plate.id|string() == function.sensor|string()  %}selected{% endif %}>{{ plate.name }}</option>
                             {% endfor %}
                         </select>
                         <label>Plate</label>
                     </div>
                     <div class="input-field col s2 offset-s1">
                         <select>
-                          <option value="" disabled selected>></option>
+                          <option value="" disabled selected>{{ function.operator }}</option>
                           <option value="1"><</option>
-                          <option value="2">=</option>
+                          <option value="2">></option>
+                          <option value="3">=</option>
                         </select>
                     </div>
                     <div class="input-field col s2 offset-s1">
-                        <input value="80" id="first_name" type="text" class="validate">
+                        <input value={{ function.weight }} id="first_name" type="text" class="validate">
                         <label for="first_name">Weight</label>
                     </div>
                     <button class="btn waves-effect waves-light right" type="submit" name="action">Save
